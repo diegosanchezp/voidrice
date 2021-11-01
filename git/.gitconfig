@@ -1,0 +1,7 @@
+[user]
+	email = diegosandmg@gmail.com
+	name = Diego Sánchez
+[core]
+	editor = nvim
+[merge]
+	tool = vimdiff
