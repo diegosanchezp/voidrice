@@ -1,0 +1,3 @@
+[submodule "lukeconfig"]
+	path = lukeconfig
+	url = git@github.com:diegosanchezp/voidrice.git
