@@ -3,7 +3,7 @@ Powered by [GNU-stow](https://www.gnu.org/software/stow/manual/stow.html)
 
 ## Instalation
 ```sh
-# Simulate first
+# Simulate first, to test what it will do
 stow -nvt ~ */
 
 # Then install
@@ -18,4 +18,12 @@ stow --adopt -nvt ~ */
 # Then update
 stow --adopt -vt ~ */
 ```
+## About .config .local
+There are two folders where you can find configuration that will endup in `~/.config` and `~/.local`, these are
 
+```sh
+# My personal configurations, all of the folders excluding ./lukeconfig
+
+# Forked configurations from other persons 
+./lukeconfig
+```
