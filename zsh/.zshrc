@@ -11,7 +11,6 @@ PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magent
 HISTSIZE=10000
 SAVEHIST=10000
 HISTFILE=~/.cache/zsh/history
-bindkey "^R" history-incremental-pattern-search-backward
 
 # Basic auto/tab complete:
 autoload -U compinit
@@ -19,11 +18,21 @@ zstyle ':completion:*' menu select
 zmodload zsh/complist
 compinit
 _comp_options+=(globdots)		# Include hidden files.
-
 # vi mode
 bindkey -v
+# bindkey -v must come before history-incremental-search-backward
+# otherwise it doesnt works
+# https://unix.stackexchange.com/questions/30168/how-to-enable-reverse-search-in-zsh
+bindkey "^R" history-incremental-pattern-search-backward
 export KEYTIMEOUT=1
 
+# cd history completeion
+# https://unix.stackexchange.com/questions/157763/do-we-have-more-history-for-cd
+setopt AUTO_PUSHD                  # pushes the old directory onto the stack
+setopt PUSHD_MINUS                 # exchange the meanings of '+' and '-'
+setopt CDABLE_VARS                 # expand the expression (allows 'cd -2/tmp')
+autoload -U compinit && compinit   # load + start completion
+zstyle ':completion:*:directory-stack' list-colors '=(#b) #([0-9]#)*( *)==95=38;5;12'
 
 # Use vim keys in tab complete menu:
 bindkey -M menuselect 'h' vi-backward-char
@@ -72,7 +81,9 @@ bindkey '^e' edit-command-line
 # Load aliases and shortcuts if existent.
 [ -f "$HOME/.config/shortcutrc" ] && source "$HOME/.config/shortcutrc"
 [ -f "$HOME/.config/aliasrc" ] && source "$HOME/.config/aliasrc"
+[ -f "$HOME/.zprofile" ] && source "$HOME/.zprofile"
 
 # Load zsh-syntax-highlighting; should be last.
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
 
+alias luamake=/home/diego/.cache/nvim/nlua/sumneko_lua/lua-language-server/3rd/luamake/luamake
