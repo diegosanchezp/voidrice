@@ -1,27 +1,33 @@
+# See man://dunst(5)
 [global]
     monitor = 0
     follow = keyboard
-    width = 370
-    height = 350
-    offset = 0x19
-    padding = 2
-    horizontal_padding = 2
-    transparency = 25
-    font = Monospace 12
+    width = 350
+    # No horizontal offset, 30 px vertical
+    offset = (0,30)
+    font = JetBrainsMono Nerd Font 12
     format = "<b>%s</b>\n%b"
+    word_wrap = yes
 
+# Taken from https://github.com/ericmurphyxyz/dotfiles/blob/master/.config/dunst/dunstrc
 [urgency_low]
-    background = "#1d2021"
-    foreground = "#928374"
+    background = "#181825"
+    foreground = "#CDD6F4"
+    highlight = "#CDD6F4"
+    frame_color = "#181825"
     timeout = 3
 
 [urgency_normal]
-    foreground = "#ebdbb2"
-    background = "#458588"
+    background = "#181825"
+    foreground = "#CDD6F4"
+    highlight = "#CDD6F4"
+    frame_color = "#181825"
     timeout = 5
 
 [urgency_critical]
-    background = "#1cc24d"
-    foreground = "#ebdbb2"
-    frame_color = "#fabd2f"
+    # Red background
+    background = "#FF0000"
+    foreground = "#FFFFFF"
+    # Light red border
+    border = "#FFC0C0"
     timeout = 10
